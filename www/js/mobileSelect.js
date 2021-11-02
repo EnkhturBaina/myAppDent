@@ -53,6 +53,7 @@
       _this.wheel = getClass(_this.mobileSelect, "wheel");
       _this.slider = getClass(_this.mobileSelect, "selectContainer");
       _this.wheels = _this.mobileSelect.querySelector(".wheels");
+
       _this.liHeight = _this.mobileSelect.querySelector("li").offsetHeight;
       _this.ensureBtn = _this.mobileSelect.querySelector(".ensure");
       _this.cancelBtn = _this.mobileSelect.querySelector(".cancel");
