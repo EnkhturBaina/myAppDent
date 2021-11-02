@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="shortcut icon" href="#">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/mobileSelect.css">
+
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+
+  <script src="js/mobileSelect.js" type="text/javascript"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/firebase.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyA7jGKJO7jVi1cUKB0lhYXRB4u8GpQTq74",
+      authDomain: "prodent-f4ae5.firebaseapp.com",
+      databaseURL: "https://prodent-f4ae5-default-rtdb.firebaseio.com",
+      projectId: "prodent-f4ae5",
+      storageBucket: "prodent-f4ae5.appspot.com",
+      messagingSenderId: "453502290612",
+      appId: "1:453502290612:web:8a4804b7a887d873d125e1",
+      measurementId: "G-RRQM7RF821"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="js/angularfire.min.js"></script>
+</head>
+
+<body ng-app="starter">
+  <ion-nav-view></ion-nav-view>
+</body>
+
+</html>
