@@ -139,3 +139,20 @@ caption {
   background-color: #fff !important;
   background: #fff !important;
 }
+.dent-logo {
+  text-align: center;
+}
+.dent-logo img {
+  width: 200px;
+}
+.login-page-content {
+  background: #f8f8f8;
+}
+.container-login {
+  margin: 150px 0;
+}
+.login-form-container {
+  width: 80%;
+  margin: 0 auto;
+  background: transparent;
+}

@@ -18,21 +18,31 @@ angular
       .state("app", {
         url: "/app",
         abstract: true,
+        cache: false,
         templateUrl: "templates/menu.html",
         controller: "AppCtrl",
       })
 
+      .state("login", {
+        url: "/login",
+        cache: false,
+        templateUrl: "templates/login.html",
+        controller: "loginCtrl",
+      })
       .state("app.redScreen", {
         url: "/redScreen",
+        cache: false,
         views: {
           menuContent: {
             templateUrl: "templates/redScreen.html",
+            controller: "redScreenCtrl",
           },
         },
       })
 
       .state("app.greenScreen", {
         url: "/greenScreen",
+        cache: false,
         views: {
           menuContent: {
             templateUrl: "templates/greenScreen.html",
@@ -40,12 +50,12 @@ angular
           },
         },
       })
-      .state("app.playlists", {
-        url: "/playlists",
+      .state("app.admin", {
+        url: "/admin",
         views: {
           menuContent: {
             templateUrl: "templates/playlists.html",
-            controller: "PlaylistsCtrl",
+            controller: "adminCtrl",
           },
         },
       })
@@ -60,5 +70,5 @@ angular
         },
       });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise("/app/playlists");
+    $urlRouterProvider.otherwise("/login");
   });

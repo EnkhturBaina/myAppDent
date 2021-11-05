@@ -1,0 +1,22 @@
+<ion-view view-title="Нэвтрэх">
+    <ion-content class="login-page-content" ng-controller="loginCtrl">
+        <div class="container-login">
+            <div class="dent-logo">
+                <img src="/www/img/Untitled.png" alt="">
+            </div>
+            <div class="login-form">
+                <div class="list list-inset no-background login-form-container">
+                    <label class="item item-input no-background input-line">
+                        <input class="input-text" type="text" placeholder="И мэйл" ng-model="user.username">
+                    </label>
+                    <label class="item item-input no-background input-line">
+                        <input class="input-text" type="password" placeholder="Нууц үг" ng-model="user.password">
+                    </label>
+                    <button class="button button-calm button-block" ng-click="checkUser()">
+                        Нэвтрэх
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

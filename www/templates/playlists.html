@@ -1,10 +1,21 @@
-<ion-view view-title="Playlists">
-  <ion-content>
-    <ion-list>
-      <!-- <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
-        {{playlist.title}}
-      </ion-item> -->
-      PLAYLIST
-    </ion-list>
+<ion-view view-title="Эмчийн булан">
+  <ion-content class="has-header">
+    <table class="red-table">
+      <caption>{{$root.todayDate}}-ны өдрийн цагууд</caption>
+      <tr>
+        <td>Нэр</td>
+        <td>Регистр</td>
+        <td>Утасны дугаар</td>
+        <td>Үйлчилгээ</td>
+        <td>Цаг</td>
+      </tr>
+      <tr ng-repeat="list in $root.emchDatas" ng-if="list.servicedate == $root.todayDate">
+        <td>{{list.name}}</td>
+        <td>{{list.register}}</td>
+        <td>{{list.phone}}</td>
+        <td ng-repeat="type in $root.serviceType" ng-if="type.id == list.incometype">{{type.name}}</td>
+        <td>{{list.servicetime}}</td>
+      </tr>
+    </table>
   </ion-content>
 </ion-view>

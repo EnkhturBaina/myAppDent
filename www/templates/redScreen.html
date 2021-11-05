@@ -1,68 +1,20 @@
-<ion-view view-title="Кассын дэвтэр - 2">
+<ion-view view-title="Эмчийн булан">
   <ion-content class="has-header">
-    <div class="list">
-      <label class="item item-input item-select">
-        <div class="input-label">Төрөл</div>
-        <select>
-          <option>Blue</option>
-          <option selected>Green</option>
-          <option>Red</option>
-        </select>
-      </label>
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Тоо ширхэг</span>
-          <input type="text" class="text-right" ng-model="name">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Үнэ</span>
-          <input type="text" class="text-right" ng-model="descript">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Хэнд</span>
-          <input type="text" class="text-right" ng-model="amount">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Падааны дугаар</span>
-          <input type="text" class="text-right" ng-model="amount">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Машины дугаар</span>
-          <input type="text" class="text-right" ng-model="amount">
-        </label>
-      </div>
-
-    </div>
-    <button class="button button-small button-positive save-btn" ng-click="savetofirebase(name,descript)">Хадгалах</button>
     <table class="red-table">
-      <caption>2021/3/23-ны өдрийн гүйлгээ</caption>
+      <caption>{{$root.todayDate}}-ны өдрийн цагууд</caption>
       <tr>
-        <td>Төрөл</td>
-        <td>Тайлбар</td>
-        <td>Тоо</td>
-        <td>Үнэ</td>
-        <td>Нийт үнэ</td>
+        <td>Нэр</td>
+        <td>Регистр</td>
+        <td>Утасны дугаар</td>
+        <td>Үйлчилгээ</td>
+        <td>Цаг</td>
       </tr>
-      <tr>
-        <td>Орлого</td>
-        <td>Борлуулалт</td>
-        <td>22</td>
-        <td>20,000,000</td>
-        <td>20,000,000</td>
-      </tr>
-    </table>
-
-    <table class="green-table-2">
-      <caption>Үлдэгдэл</caption>
-      <tr>
-        <td>Өдрийнх</td>
-        <td>НИЙТ үлдэгдэл</td>
-        <td>Жилийнх</td>
-      </tr>
-      <tr>
-        <td>10,000,000</td>
-        <td>Борлуулалт</td>
-        <td>20,000,000</td>
+      <tr ng-repeat="list in $root.emchDatas" ng-if="list.servicedate == $root.todayDate">
+        <td>{{list.name}}</td>
+        <td>{{list.register}}</td>
+        <td>{{list.phone}}</td>
+        <td ng-repeat="type in $root.serviceType" ng-if="type.id == list.incometype">{{type.name}}</td>
+        <td>{{list.servicetime}}</td>
       </tr>
     </table>
   </ion-content>
