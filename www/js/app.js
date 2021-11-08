@@ -29,6 +29,29 @@ angular
         templateUrl: "templates/login.html",
         controller: "loginCtrl",
       })
+
+      .state("app.about", {
+        url: "/about",
+        cache: false,
+        views: {
+          menuContent: {
+            templateUrl: "templates/about.html",
+            controller: "aboutCtrl",
+          },
+        },
+      })
+
+      .state("app.equ", {
+        url: "/equ",
+        cache: false,
+        views: {
+          menuContent: {
+            templateUrl: "templates/equ.html",
+            controller: "equCtrl",
+          },
+        },
+      })
+
       .state("app.redScreen", {
         url: "/redScreen",
         cache: false,

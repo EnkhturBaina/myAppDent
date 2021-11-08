@@ -145,6 +145,19 @@ caption {
 .dent-logo img {
   width: 200px;
 }
+.about-login {
+}
+.about-logo img {
+  width: 100%;
+  height: 300px;
+}
+.about-body {
+  text-align: center;
+  padding: 0 20px;
+}
+.about-list {
+  display: grid;
+}
 .login-page-content {
   background: #f8f8f8;
 }
@@ -155,4 +168,11 @@ caption {
   width: 80%;
   margin: 0 auto;
   background: transparent;
+}
+.custom-slide-box .slider-slide {
+  height: 300px !important;
+}
+
+.custom-slide-box .slider-slide img {
+  width: 100%;
 }

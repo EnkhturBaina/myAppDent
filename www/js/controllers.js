@@ -46,6 +46,12 @@ angular
       };
     }
   )
+  .controller("aboutCtrl", function ($scope, $rootScope) {
+    console.log("aboutCtrl");
+  })
+  .controller("equCtrl", function ($scope, $rootScope) {
+    console.log("equCtrl");
+  })
 
   .controller("adminCtrl", function ($scope, $rootScope) {
     var today = new Date();
