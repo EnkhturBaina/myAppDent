@@ -11,8 +11,13 @@ angular
       $rootScope,
       $ionicLoading
     ) {
+      $rootScope.$on("$ionicView.loaded", function () {
+        $rootScope.loggedUser = localStorage.getItem("user_type");
+        $scope.userType = localStorage.getItem("user_type");
+      });
       var ref = firebase.database().ref();
 
+      $rootScope.loggedUser = localStorage.getItem("user_type");
       ref.on(
         "value",
         function (snapshot) {
@@ -47,13 +52,108 @@ angular
     }
   )
   .controller("aboutCtrl", function ($scope, $rootScope) {
+    $rootScope.loggedUser = localStorage.getItem("user_type");
     console.log("aboutCtrl");
   })
   .controller("equCtrl", function ($scope, $rootScope) {
+    $rootScope.loggedUser = localStorage.getItem("user_type");
     console.log("equCtrl");
+  })
+  .controller("contactCtrl", function ($scope, $rootScope, $ionicPopup) {
+    $rootScope.loggedUser = localStorage.getItem("user_type");
+
+    $scope.userType = localStorage.getItem("user_type");
+    var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+
+    var time =
+      today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+    var uniqueId =
+      today.getFullYear() +
+      "" +
+      (today.getMonth() + 1) +
+      "" +
+      today.getDate() +
+      "" +
+      today.getHours() +
+      "" +
+      today.getMinutes() +
+      "" +
+      today.getSeconds() +
+      "" +
+      Math.floor(Math.random() * 100 + 1);
+    $rootScope.contactData = {
+      name: "",
+      phone: "",
+      msg: "",
+      created_at: "",
+    };
+
+    $rootScope.showAlert = function (text) {
+      var alertPopup = $ionicPopup.alert({
+        // title: "Don't eat that!",
+        template: text,
+      });
+      alertPopup.then(function (res) {});
+    };
+    $scope.checkReqiuredContact = function (param) {
+      if (param == "contact") {
+        if ($rootScope.contactData.name == "") {
+          $rootScope.showAlert("Нэрээ оруулна уу");
+          return false;
+        } else if ($rootScope.contactData.phone == "") {
+          $rootScope.showAlert("Утасны дугаар аа оруулна уу");
+          return false;
+        } else if ($rootScope.contactData.msg == "") {
+          $rootScope.showAlert("Санал хүсэлт ээ оруулна уу");
+          return false;
+        } else {
+          return true;
+        }
+      }
+    };
+    $scope.getContactData = function () {
+      var cass1Data = firebase.database().ref();
+
+      cass1Data.on(
+        "value",
+        function (snapshot) {
+          $rootScope.storedContacts = snapshot.val().contacts;
+        },
+        function (error) {
+          console.log("Error: " + error.code);
+        }
+      );
+    };
+    $scope.getContactData();
+    $scope.saveContact = function () {
+      if ($scope.checkReqiuredContact("contact")) {
+        $rootScope.contactData.created_at = date + " " + time;
+        firebase
+          .database()
+          .ref("contacts/" + uniqueId)
+          .set($rootScope.contactData);
+        $rootScope.datas = {};
+        $rootScope.contactData = {
+          name: "",
+          phone: "",
+          msg: "",
+          created_at: "",
+        };
+        $rootScope.showAlert("Амжилттай");
+        $scope.getContactData();
+      }
+    };
   })
 
   .controller("adminCtrl", function ($scope, $rootScope) {
+    $rootScope.loggedUser = localStorage.getItem("user_type");
     var today = new Date();
     $rootScope.todayDate =
       today.getFullYear() +
@@ -68,6 +168,7 @@ angular
     $rootScope.serviceType = data2;
   })
   .controller("redScreenCtrl", function ($scope, $rootScope) {
+    $rootScope.loggedUser = localStorage.getItem("user_type");
     var today = new Date();
     $rootScope.todayDate =
       today.getFullYear() +
@@ -93,6 +194,7 @@ angular
       $ionicPlatform,
       $ionicPopup
     ) {
+      $rootScope.loggedUser = localStorage.getItem("user_type");
       $scope.checkReqiured = function (param) {
         if (param == "service-order") {
           if ($rootScope.datas.name == null || $rootScope.datas.name == "") {
@@ -243,7 +345,8 @@ angular
       $rootScope,
       $ionicPopup,
       $timeout,
-      $ionicLoading
+      $ionicLoading,
+      $ionicHistory
     ) {
       $rootScope.ShowLoader = function () {
         $ionicLoading.show({
@@ -331,12 +434,16 @@ angular
           $timeout(function () {
             if ($rootScope.isLogin) {
               if ($rootScope.loggedUser == "admin") {
+                localStorage.setItem("user_type", "admin");
                 $state.go("app.admin");
               } else if ($rootScope.loggedUser == "emch") {
+                localStorage.setItem("user_type", "emch");
                 $state.go("app.redScreen");
               } else if ($rootScope.loggedUser == "user") {
+                localStorage.setItem("user_type", "user");
                 $state.go("app.greenScreen");
               }
+              $ionicHistory.clearCache();
             } else {
               $rootScope.showAlert("И мэйл эсвэл нууц үг буруу байна");
             }

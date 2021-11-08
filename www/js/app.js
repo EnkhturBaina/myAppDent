@@ -52,6 +52,17 @@ angular
         },
       })
 
+      .state("app.contact", {
+        url: "/contact",
+        cache: false,
+        views: {
+          menuContent: {
+            templateUrl: "templates/contact.html",
+            controller: "contactCtrl",
+          },
+        },
+      })
+
       .state("app.redScreen", {
         url: "/redScreen",
         cache: false,
@@ -75,6 +86,7 @@ angular
       })
       .state("app.admin", {
         url: "/admin",
+        cache: false,
         views: {
           menuContent: {
             templateUrl: "templates/playlists.html",
@@ -85,6 +97,7 @@ angular
 
       .state("app.single", {
         url: "/playlists/:playlistId",
+        cache: false,
         views: {
           menuContent: {
             templateUrl: "templates/playlist.html",

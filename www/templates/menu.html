@@ -1,6 +1,6 @@
 <ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-stable">
+    <ion-nav-bar class="bar-positive">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -15,20 +15,23 @@
   <ion-side-menu side="left">
     <ion-content>
       <ion-list>
-        <!-- <ion-item menu-close href="#/app/greenScreen">
-          Кассын дэвтэр - 1
+        <ion-item menu-close href="#/app/admin" ng-if="userType=='admin'">
+          Admin булан
         </ion-item>
-        <ion-item menu-close href="#/app/redScreen">
-          Кассын дэвтэр - 2
+        <ion-item menu-close href="#/app/greenScreen" ng-if="userType=='user'">
+          Үйлчилгээ авах
         </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlist
-        </ion-item> -->
+        <ion-item menu-close href="#/app/redScreen" ng-if="userType=='emch'">
+          Эмчийн булан
+        </ion-item>
         <ion-item menu-close href="#/app/about">
           Бидний тухай
         </ion-item>
         <ion-item menu-close href="#/app/equ">
           Тоног төхөөрөмж
+        </ion-item>
+        <ion-item menu-close href="#/app/contact" ng-if="userType=='user' || userType=='admin'">
+          Санал хүсэлт
         </ion-item>
         <ion-item menu-close href="#/login" ng-click="logOut()">
           Гарах
